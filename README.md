@@ -1,6 +1,6 @@
 # 📱 IP Lookup
 
-Bu program ile SMS mesajlarını hızlı bir şekilde belirlediğiniz numaralara gönderebilirsiniz. Birden fazla numaraya aynı anda veya tek bir numaraya SMS gönderme seçeneğiniz bulunuyor.
+Bu program ile istediğiniz bir ip adresi hakkında bilgi toplayabilirsiniz.
 
 ## ⚠️ Güvenlik Uyarısı
 
