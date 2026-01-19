@@ -8,7 +8,7 @@ from datetime import datetime
 import threading
 import tkintermapview
 
-# --- Avant-Garde Theme Engine ---
+# --- Avangart Tema Motoru ---
 THEMES = {
     "Ocean Blue": {"main": "#3b82f6", "hover": "#2563eb", "text": "white"},
     "Emerald": {"main": "#10b981", "hover": "#059669", "text": "white"},
@@ -75,7 +75,7 @@ class IPLookupApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        # Set initial appearance BEFORE any widgets are created
+        # Herhangi bir widget oluşturulmadan ÖNCE ilk görünümü ayarlayın
         ctk.set_appearance_mode("dark")
         
         self.current_lang = "tr"
@@ -92,7 +92,7 @@ class IPLookupApp(ctk.CTk):
         self.apply_premium_theme()
 
     def setup_ui(self):
-        # Sidebar
+        # Kenar Çubuğu
         self.sidebar = ctk.CTkFrame(self, width=280, corner_radius=0, fg_color=("gray95", "#0d0d0d"))
         self.sidebar.grid(row=0, column=0, sticky="nsew")
         self.sidebar.grid_rowconfigure(10, weight=1)
@@ -100,7 +100,7 @@ class IPLookupApp(ctk.CTk):
         self.logo_label = ctk.CTkLabel(self.sidebar, text="IP PRO", font=ctk.CTkFont(family="Inter", size=32, weight="bold"))
         self.logo_label.grid(row=0, column=0, padx=30, pady=(50, 40))
 
-        # Controls
+        # Kontroller
         self.lbl_app = ctk.CTkLabel(self.sidebar, text="Görünüm Modu", font=ctk.CTkFont(size=12, weight="bold"), text_color=("#444444", "#bbbbbb"))
         self.lbl_app.grid(row=1, column=0, padx=30, pady=(10, 5), sticky="w")
         self.appearance_menu = ctk.CTkOptionMenu(self.sidebar, values=["Dark", "Light", "System"], command=self.change_appearance, height=35)
@@ -119,17 +119,17 @@ class IPLookupApp(ctk.CTk):
         self.lang_menu.grid(row=6, column=0, padx=30, pady=(0, 20), sticky="ew")
         self.lang_menu.set("Türkçe")
 
-        # Main content
+        # Ana içerik
         self.main_content = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.main_content.grid(row=0, column=1, sticky="nsew", padx=30, pady=30)
         self.main_content.grid_columnconfigure(0, weight=1)
 
-        # Search box
+        # Arama kutusu
         self.search_frame = ctk.CTkFrame(self.main_content, fg_color="transparent")
         self.search_frame.grid(row=0, column=0, sticky="ew", pady=(0, 20))
         self.search_frame.grid_columnconfigure(0, weight=1)
 
-        self.entry = ctk.CTkEntry(self.main_content, height=50, corner_radius=12, border_width=2) # Temporarily place in main_content for grid control
+        self.entry = ctk.CTkEntry(self.main_content, height=50, corner_radius=12, border_width=2) # Grid kontrolü için geçici olarak main_content içine yerleştirildi
         self.entry.grid(row=0, column=0, padx=(0, 10), in_=self.search_frame, sticky="ew")
 
         self.search_btn = ctk.CTkButton(self.search_frame, text="Analiz", height=50, width=120, corner_radius=12, command=self.perform_search)
@@ -138,19 +138,19 @@ class IPLookupApp(ctk.CTk):
         self.my_ip_btn = ctk.CTkButton(self.search_frame, text="Kendi IP'm", height=50, width=120, corner_radius=12, fg_color="transparent", border_width=2, command=self.check_self_ip)
         self.my_ip_btn.grid(row=0, column=2, padx=5)
 
-        # Result title
+        # Sonuç başlığı
         self.results_title = ctk.CTkLabel(self.main_content, text="Analysis", font=ctk.CTkFont(size=24, weight="bold"))
         self.results_title.grid(row=1, column=0, sticky="w", pady=(0, 15))
 
-        # Cards (Standard Frame instead of Scrollable to avoid scrollbar)
+        # Kartlar (Kaydırma çubuğunu önlemek için Kaydırılabilir yerine Standart Çerçeve)
         self.cards_container = ctk.CTkFrame(self.main_content, fg_color="transparent")
         self.cards_container.grid(row=2, column=0, sticky="nsew", pady=(0, 10))
         self.cards_container.grid_columnconfigure((0, 1, 2), weight=1)
 
-        # Map Panel (Fixed clipping issues with identical radius and no border)
+        # Harita Paneli (Aynı yarıçap ve kenarlık olmamasıyla kırpma sorunları düzeltildi)
         current_mode = ctk.get_appearance_mode().lower()
         map_bg = "#ffffff" if current_mode == "light" else "#1a1a1a"
-        map_fg = "#ebebeb" if current_mode == "light" else "#242424" # Slightly different for contrast if needed
+        map_fg = "#ebebeb" if current_mode == "light" else "#242424" # Kontrast için gerekirse biraz farklı
         
         self.map_frame = ctk.CTkFrame(
             self.main_content,
@@ -167,7 +167,7 @@ class IPLookupApp(ctk.CTk):
             corner_radius=0,   # ✅ ÇOK ÖNEMLİ
             bg_color=map_bg
         )
-        self.map_widget.pack(fill="both", expand=True) # Removed padding to prevent edge bleed
+        self.map_widget.pack(fill="both", expand=True) # Kenar kanamasını önlemek için dolgu kaldırıldı
         self.map_widget.set_zoom(12)
 
 
@@ -192,7 +192,7 @@ class IPLookupApp(ctk.CTk):
             
             self.info_widgets[field] = (n_lbl, v_lbl)
 
-        # Footer actions
+        # Alt bilgi eylemleri
         self.footer = ctk.CTkFrame(self.main_content, fg_color="transparent")
         self.footer.grid(row=4, column=0, sticky="ew", pady=(10, 10))
         self.footer.grid_columnconfigure(0, weight=1)
@@ -203,22 +203,22 @@ class IPLookupApp(ctk.CTk):
 
     def apply_premium_theme(self):
         colors = THEMES[self.current_theme]
-        # Update search button
+        # Arama düğmesini güncelle
         self.search_btn.configure(fg_color=colors["main"], hover_color=colors["hover"], text_color=colors["text"])
         
-        # Update My IP button (outline style)
+        # Kendi IP'm düğmesini güncelle (anahat stili)
         current_mode = ctk.get_appearance_mode().lower()
         self.my_ip_btn.configure(border_color=colors["main"], text_color=colors["main"] if current_mode == "light" else "white")
         
-        # Update map frame and widget background to fix corner issues
+        # Köşe sorunlarını düzeltmek için harita çerçevesini ve widget arka planını güncelle
         map_bg = "#ffffff" if current_mode == "light" else "#1a1a1a"
         self.map_frame.configure(fg_color=map_bg)
         
-        # Deep update for map colors (Using standard 'bg' for canvas to fix corners)
+        # Harita renkleri için derin güncelleme (Köşeleri düzeltmek için tuvalde standart 'bg' kullanılıyor)
         if hasattr(self.map_widget, 'canvas'):
             self.map_widget.canvas.configure(bg=map_bg, highlightthickness=0)
             
-        # Update option menu colors
+        # Seçenek menüsü renklerini güncelle
         for menu in [self.appearance_menu, self.theme_menu, self.lang_menu]:
             menu.configure(button_color=colors["main"], button_hover_color=colors["hover"])
 
@@ -228,7 +228,7 @@ class IPLookupApp(ctk.CTk):
 
     def change_appearance(self, mode):
         ctk.set_appearance_mode(mode)
-        # Re-apply theme colors to handle mode-specific adjustments
+        # Modaya özgü ayarlamaları işlemek için tema renklerini yeniden uygula
         self.apply_premium_theme()
         
     def copy_to_clipboard(self, label_widget):
@@ -236,7 +236,7 @@ class IPLookupApp(ctk.CTk):
         if text and text != "---":
             self.clipboard_clear()
             self.clipboard_append(text)
-            self.update() # Required for some systems to finalize clipboard
+            self.update() # Bazı sistemlerin panoyu sonlandırması için gereklidir
             
             original_color = label_widget.cget("text_color")
             label_widget.configure(text_color="#27ae60")
@@ -244,7 +244,7 @@ class IPLookupApp(ctk.CTk):
             success_msg = LANGUAGES[self.current_lang]["copy_success"]
             self.status_label.configure(text=f"📋 {success_msg} ({text})", text_color="#27ae60")
             
-            # Reset color after 1 second
+            # 1 saniye sonra rengi sıfırla
             self.after(1000, lambda: label_widget.configure(text_color=original_color))
 
     def change_lang(self, lang):
@@ -268,7 +268,7 @@ class IPLookupApp(ctk.CTk):
 
     def perform_search(self, target=""):
         q = target if target else self.entry.get()
-        # Status text based on language
+        # Dile göre durum metni
         self.status_label.configure(text="⌛ Analiz ediliyor..." if self.current_lang=="tr" else "⌛ Analyzing...", text_color="gray")
         
         def _thread():
@@ -307,10 +307,10 @@ class IPLookupApp(ctk.CTk):
         
         self.lat, self.lon = d.get('lat'), d.get('lon')
         
-        # Update Map
+        # Haritayı Güncelle
         if self.lat and self.lon:
             self.map_widget.set_position(self.lat, self.lon)
-            # Use theme main color for the marker
+            # İşaretçi için tema ana rengini kullan
             colors = THEMES[self.current_theme]
             self.map_widget.set_marker(self.lat, self.lon, text=f"IP: {d.get('query')}", marker_color_circle=colors["main"], marker_color_outside=colors["hover"])
             self.map_widget.set_zoom(13)

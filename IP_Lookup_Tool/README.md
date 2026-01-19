@@ -1,53 +1,53 @@
 # IP Lookup Pro
 
-**IP Lookup Pro** is a modern, avant-garde IP address analysis tool built with Python and CustomTkinter. It provides detailed geolocation data, ISP information, and interactive map visualization wrapped in a premium, ultra-responsive user interface.
+**IP Lookup Pro**, Python ve CustomTkinter ile oluşturulmuş modern, avangart bir IP adresi analiz aracıdır. Premium, ultra duyarlı bir kullanıcı arayüzü içinde ayrıntılı coğrafi konum verileri, İSS bilgileri ve etkileşimli harita görselleştirmesi sunar.
 
-## Features
+## Özellikler
 
-- **Deep Analysis**: Get detailed info including ISP, City, Region, Zip Code, Timezone, and Coordinates.
-- **Interactive Map**: Embedded map view to visualize the exact location of the IP/Domain.
-- **Avant-Garde Design**: A sleek, modern UI with "Intentional Minimalism" design philosophy.
-- **Premium Themes**: Switch between curated themes like Ocean Blue, Emerald, Rose Pink, Purple Rain, and Cyberpunk.
-- **Multi-Language Support**: Full Turkish and English language support.
-- **Clip & Go**: One-click copy functionality for all data fields.
+- **Derin Analiz**: İSS, Şehir, Bölge, Posta Kodu, Saat Dilimi ve Koordinatlar dahil olmak üzere ayrıntılı bilgi edinin.
+- **Etkileşimli Harita**: IP/Alan adının tam konumunu görselleştirmek için gömülü harita görünümü.
+- **Avangart Tasarım**: "Kasıtlı Minimalizm" tasarım felsefesine sahip şık, modern bir arayüz.
+- **Premium Temalar**: Okyanus Mavisi, Zümrüt, Gül Pembesi, Mor Yağmur ve Siberpunk gibi özenle hazırlanmış temalar arasında geçiş yapın.
+- **Çoklu Dil Desteği**: Tam Türkçe ve İngilizce dil desteği.
+- **Kopyala & Git**: Tüm veri alanları için tek tıkla kopyalama işlevi.
 
-## Installation / Run from Source
+## Kurulum / Kaynaktan Çalıştırma
 
-1.  **Clone the repository**:
+1.  **Depoyu klonlayın**:
 
     ```bash
     git clone https://github.com/Memati8383/ip_tracer.git
     cd ip_tracer
     ```
 
-2.  **Install dependencies**:
+2.  **Bağımlılıkları yükleyin**:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3.  **Run the application**:
+3.  **Uygulamayı çalıştırın**:
     ```bash
     python main.py
     ```
 
-## Build Executable (Windows)
+## Çalıştırılabilir Dosya Oluştur (Windows)
 
-To create a standalone `.exe` file:
+Bağımsız bir `.exe` dosyası oluşturmak için:
 
 ```bash
 pyinstaller --noconfirm --onefile --windowed --clean --icon=icon.ico --name "IPLookupPro" main.py
 ```
 
-The executable will be located in the `dist/` folder.
+Çalıştırılabilir dosya `dist/` klasöründe bulunacaktır.
 
-## Technologies
+## Teknolojiler
 
 - [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)
 - [TkinterMapView](https://github.com/TomSchimansky/TkinterMapView)
 - Requests & IP-API
 - Pillow (PIL)
 
-## License
+## Lisans
 
-MIT License.
+MIT Lisansı.
